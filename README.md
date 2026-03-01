@@ -6,7 +6,8 @@
 
 ## Example of use
 ### Chatbot
-<img width="1933" height="1304" alt="Captura de pantalla 2026-03-01 a las 17 43 23" src="https://github.com/user-attachments/assets/bef85c03-80c3-4d30-b93b-a90eafee97aa" />
+<img width="1933" height="1304" alt="Captura de pantalla 2026-03-01 a las 17 43 23" src="https://github.com/user-attachments/assets/81108e00-a000-4c04-a501-a858edd61de4" />
+
 
 
 ### Report
