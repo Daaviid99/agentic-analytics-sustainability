@@ -3,8 +3,13 @@
 > ⚠️ **DEMO PROJECT — NOT FOR PRODUCTION USE**
 >
 > This repository is an exploratory prototype built to evaluate the feasibility of applying agentic AI to ESG data analysis and sustainability reporting workflows. It is not production-ready, has not been security-audited, and should not be deployed in any live environment or used with sensitive corporate data without significant further development.
-> 
+
+## Example of use
+### Chatbot
 <img width="1933" height="1304" alt="Captura de pantalla 2026-03-01 a las 17 43 23" src="https://github.com/user-attachments/assets/bef85c03-80c3-4d30-b93b-a90eafee97aa" />
+### Report
+<img width="816" height="1143" alt="Captura de pantalla 2026-03-01 a las 17 47 00" src="https://github.com/user-attachments/assets/fe04328c-4df1-4733-a76f-a912f95400b5" />
+<img width="821" height="1027" alt="Captura de pantalla 2026-03-01 a las 17 47 13" src="https://github.com/user-attachments/assets/e85dd07e-dbbb-4ba8-9e4f-7a4ceb2f6ae0" />
 
 ---
 
