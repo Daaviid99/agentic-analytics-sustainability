@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Informe ESG {{ period }}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 18mm 22mm;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            font-size: 10pt;
+            color: #1c1c1e;
+            background: #ffffff;
+            line-height: 1.5;
+        }
+
+        /* ── PORTADA ── */
+        .cover {
+            background-color: #1a3a2a;
+            width: 100%;
+            height: 257mm;
+            padding: 50px 60px;
+            page-break-after: always;
+        }
+
+        .cover-label {
+            font-family: 'Courier New', monospace;
+            font-size: 7.5pt;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #52b788;
+            margin-bottom: 20px;
+        }
+
+        .cover-title {
+            font-size: 40pt;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 0;
+        }
+
+        .cover-title-esg {
+            font-size: 40pt;
+            font-weight: bold;
+            color: #52b788;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .cover-period {
+            font-size: 16pt;
+            color: #b7e4c7;
+            font-style: italic;
+            margin-bottom: 32px;
+        }
+
+        .cover-line {
+            border: none;
+            border-top: 2px solid #52b788;
+            width: 60px;
+            margin: 0 0 24px 0;
+        }
+
+        .cover-meta {
+            font-family: 'Courier New', monospace;
+            font-size: 8pt;
+            color: #b7e4c7;
+            letter-spacing: 1px;
+            line-height: 1.8;
+        }
+
+        /* ── CABECERA INTERIOR ── */
+        .header-table {
+            width: 100%;
+            border-bottom: 2px solid #2d6a4f;
+            margin-bottom: 20px;
+            padding-bottom: 6px;
+        }
+
+        .header-title {
+            font-family: 'Courier New', monospace;
+            font-size: 7.5pt;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #2d6a4f;
+        }
+
+        .header-period {
+            font-size: 7.5pt;
+            color: #6b7280;
+            text-align: right;
+        }
+
+        /* ── RESUMEN EJECUTIVO ── */
+        .summary-box {
+            background-color: #1a3a2a;
+            padding: 22px 28px;
+            margin-bottom: 24px;
+        }
+
+        .summary-label {
+            font-family: 'Courier New', monospace;
+            font-size: 7pt;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #52b788;
+            margin-bottom: 10px;
+        }
+
+        .summary-text {
+            font-size: 10pt;
+            line-height: 1.7;
+            color: #b7e4c7;
+        }
+
+        /* ── TARJETAS KPI ── */
+        .kpi-table {
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .kpi-cell {
+            width: 33%;
+            padding: 14px 12px;
+            border: 1px solid #e4e4e7;
+            vertical-align: top;
+        }
+
+        .kpi-mejora {
+            border-left: 4px solid #52b788;
+        }
+
+        .kpi-empeora {
+            border-left: 4px solid #f87171;
+        }
+
+        .kpi-estable {
+            border-left: 4px solid #facc15;
+        }
+
+        .kpi-label {
+            font-family: 'Courier New', monospace;
+            font-size: 6.5pt;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+        .kpi-value {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1a3a2a;
+            line-height: 1;
+            margin-bottom: 3px;
+        }
+
+        .kpi-unit {
+            font-size: 7.5pt;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            font-family: 'Courier New', monospace;
+            font-size: 6.5pt;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 2px 6px;
+        }
+
+        .badge-mejora {
+            background-color: #d8f3dc;
+            color: #2d6a4f;
+        }
+
+        .badge-empeora {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .badge-estable {
+            background-color: #fef9c3;
+            color: #854d0e;
+        }
+
+        /* ── SECCIONES ── */
+        .section-number {
+            font-family: 'Courier New', monospace;
+            font-size: 6.5pt;
+            color: #52b788;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 13pt;
+            color: #1a3a2a;
+            font-weight: normal;
+            border-bottom: 1px solid #d8f3dc;
+            padding-bottom: 5px;
+            margin-top: 2px;
+            margin-bottom: 12px;
+        }
+
+        /* ── TABLA MÉTRICAS ── */
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 9pt;
+        }
+
+        .metrics-table th {
+            background-color: #1a3a2a;
+            color: #ffffff;
+            padding: 6px 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 6.5pt;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+
+        .metrics-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid #f4f4f5;
+        }
+
+        .metrics-table .even td {
+            background-color: #f4f4f5;
+        }
+
+        .val {
+            font-weight: bold;
+            color: #1a3a2a;
+            text-align: right;
+        }
+
+        .unit {
+            text-align: right;
+            color: #6b7280;
+            font-size: 8pt;
+        }
+
+        /* ── PROGRESO ── */
+        .progress-label {
+            font-size: 8pt;
+            color: #6b7280;
+            margin-bottom: 3px;
+            margin-top: 8px;
+        }
+
+        .progress-bg {
+            width: 100%;
+            height: 6px;
+            background-color: #e4e4e7;
+            margin-bottom: 12px;
+        }
+
+        .progress-fill {
+            height: 6px;
+            background-color: #52b788;
+        }
+
+        /* ── INTERPRETACIÓN ── */
+        .interpretation {
+            background-color: #d8f3dc;
+            border-left: 3px solid #2d6a4f;
+            padding: 10px 14px;
+            font-size: 9pt;
+            color: #1a3a2a;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .interp-label {
+            font-family: 'Courier New', monospace;
+            font-size: 6.5pt;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #2d6a4f;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ── PIE ── */
+        .footer-table {
+            width: 100%;
+            border-top: 1px solid #e4e4e7;
+            margin-top: 20px;
+            padding-top: 6px;
+        }
+
+        .footer-text {
+            font-family: 'Courier New', monospace;
+            font-size: 6.5pt;
+            color: #6b7280;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══ PORTADA ══════════════════════════════════════════════════════════════ -->
+    <div class="cover page-break">
+        <p class="cover-label">Informe de Sostenibilidad · Medioambiente</p>
+        <p class="cover-title">Reporte</p>
+        <p class="cover-title-esg">ESG</p>
+        <p class="cover-period">{{ period }}</p>
+        <hr class="cover-line" />
+        <p class="cover-meta">
+            Generado el {{ generated_at }}<br />
+            Agente Analista ESG · Agentic Analytics v1
+        </p>
+    </div>
+
+    <!-- ══ PÁGINA 1 — RESUMEN EJECUTIVO ════════════════════════════════════════ -->
+    <div class="page-break">
+
+        <table class="header-table" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="header-title">Resumen Ejecutivo</td>
+                <td class="header-period">{{ period }}</td>
+            </tr>
+        </table>
+
+        <div class="summary-box">
+            <p class="summary-label">Conclusiones clave</p>
+            <p class="summary-text">{{ summary }}</p>
+        </div>
+
+        <table class="kpi-table" cellpadding="0" cellspacing="8">
+            <tr>
+                <td class="kpi-cell kpi-{{ consumo.trend }}">
+                    <p class="kpi-label">Consumo eléctrico</p>
+                    <p class="kpi-value">{{ "{:,.0f}".format(consumo.total_kwh) }}</p>
+                    <p class="kpi-unit">kWh totales</p>
+                    <span class="badge badge-{{ consumo.trend }}">{{ consumo.trend }}</span>
+                </td>
+                <td class="kpi-cell kpi-{{ agua.trend }}">
+                    <p class="kpi-label">Agua</p>
+                    <p class="kpi-value">{{ "{:,.0f}".format(agua.total_litros) }}</p>
+                    <p class="kpi-unit">litros consumidos</p>
+                    <span class="badge badge-{{ agua.trend }}">{{ agua.trend }}</span>
+                </td>
+                <td class="kpi-cell kpi-{{ residuos.trend }}">
+                    <p class="kpi-label">Residuos</p>
+                    <p class="kpi-value">{{ "{:,.1f}".format(residuos.total_tons) }}</p>
+                    <p class="kpi-unit">toneladas generadas</p>
+                    <span class="badge badge-{{ residuos.trend }}">{{ residuos.trend }}</span>
+                </td>
+            </tr>
+        </table>
+
+        <table class="footer-table" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="footer-text">Agentic Analytics · Informe ESG</td>
+                <td class="footer-text" style="text-align:right">{{ period }} · {{ generated_at }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ══ PÁGINA 2 — ENERGÍA ══════════════════════════════════════════════════ -->
+    <div class="page-break">
+
+        <table class="header-table" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="header-title">Energía</td>
+                <td class="header-period">{{ period }}</td>
+            </tr>
+        </table>
+
+        <p class="section-number">01 · Indicador</p>
+        <h2 class="section-title">Consumo Eléctrico</h2>
+
+        <table class="metrics-table">
+            <thead>
+                <tr>
+                    <th style="text-align:left; width:55%">Métrica</th>
+                    <th style="text-align:right; width:25%">Valor</th>
+                    <th style="text-align:right; width:20%">Unidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Consumo total</td>
+                    <td class="val">{{ "{:,.0f}".format(consumo.total_kwh) }}</td>
+                    <td class="unit">kWh</td>
+                </tr>
+                <tr class="even">
+                    <td>Autoconsumo (renovable)</td>
+                    <td class="val">{{ "{:,.0f}".format(consumo.autoconsumo_kwh) }}</td>
+                    <td class="unit">kWh</td>
+                </tr>
+                <tr>
+                    <td>Consumo de red</td>
+                    <td class="val">{{ "{:,.0f}".format(consumo.total_kwh - consumo.autoconsumo_kwh) }}</td>
+                    <td class="unit">kWh</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="progress-label">% Autoconsumo sobre total: <strong>{{ "%.1f"|format(consumo.autoconsumo_pct)
+                }}%</strong></p>
+        <div class="progress-bg">
+            <div class="progress-fill" style="width:{{ consumo.autoconsumo_pct }}%"></div>
+        </div>
+
+        <div class="interpretation">
+            <span class="interp-label">Análisis</span>
+            {{ consumo.interpretation }}
+        </div>
+
+        <table class="footer-table" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="footer-text">Agentic Analytics · Informe ESG</td>
+                <td class="footer-text" style="text-align:right">{{ period }} · {{ generated_at }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ══ PÁGINA 3 — AGUA Y RESIDUOS ══════════════════════════════════════════ -->
+    <div>
+
+        <table class="header-table" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="header-title">Agua · Residuos</td>
+                <td class="header-period">{{ period }}</td>
+            </tr>
+        </table>
+
+        <p class="section-number">02 · Indicador</p>
+        <h2 class="section-title">Consumo de Agua</h2>
+
+        <table class="metrics-table">
+            <thead>
+                <tr>
+                    <th style="text-align:left; width:55%">Métrica</th>
+                    <th style="text-align:right; width:25%">Valor</th>
+                    <th style="text-align:right; width:20%">Unidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Consumo total</td>
+                    <td class="val">{{ "{:,.0f}".format(agua.total_litros) }}</td>
+                    <td class="unit">litros</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="interpretation">
+            <span class="interp-label">Análisis</span>
+            {{ agua.interpretation }}
+        </div>
+
+        <p class="section-number" style="margin-top:20px">03 · Indicador</p>
+        <h2 class="section-title">Gestión de Residuos</h2>
+
+        <table class="metrics-table">
+            <thead>
+                <tr>
+                    <th style="text-align:left; width:55%">Métrica</th>
+                    <th style="text-align:right; width:25%">Valor</th>
+                    <th style="text-align:right; width:20%">Unidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Residuos totales generados</td>
+                    <td class="val">{{ "{:,.1f}".format(residuos.total_tons) }}</td>
+                    <td class="unit">toneladas</td>
+                </tr>
+                <tr class="even">
+                    <td>Residuos reciclados</td>
+                    <td class="val">{{ "{:,.1f}".format(residuos.total_tons * residuos.recycling_pct / 100) }}</td>
+                    <td class="unit">toneladas</td>
+                </tr>
+                <tr>
+                    <td>Residuos no reciclados</td>
+                    <td class="val">{{ "{:,.1f}".format(residuos.total_tons * (100 - residuos.recycling_pct) / 100) }}
+                    </td>
+                    <td class="unit">toneladas</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="progress-label">Tasa de reciclaje: <strong>{{ "%.1f"|format(residuos.recycling_pct) }}%</strong></p>
+        <div class="progress-bg">
+            <div class="progress-fill" style="width:{{ residuos.recycling_pct }}%"></div>
+        </div>
+
+        <div class="interpretation">
+            <span class="interp-label">Análisis</span>
+            {{ residuos.interpretation }}
+        </div>
+
+        <table class="footer-table" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="footer-text">Agentic Analytics · Informe ESG</td>
+                <td class="footer-text" style="text-align:right">{{ period }} · {{ generated_at }}</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>

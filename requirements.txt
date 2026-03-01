@@ -1,0 +1,21 @@
+# ── LLM ───────────────────────────────────────────────────────────────────────
+anthropic>=0.84.0
+
+# ── Database ──────────────────────────────────────────────────────────────────
+duckdb>=0.10.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# ── Templating & PDF ──────────────────────────────────────────────────────────
+jinja2>=3.1.0
+xhtml2pdf>=0.2.11
+
+# ── Interface ─────────────────────────────────────────────────────────────────
+streamlit>=1.35.0
+
+# ── Carbon tracking ───────────────────────────────────────────────────────────
+# codecarbon removed — requires macOS powermetrics (admin password)
+# CO2 estimation is handled via token-based calculation in carbon_tracker.py
+
+# ── Dev utilities ─────────────────────────────────────────────────────────────
+python-dotenv>=1.0.0
