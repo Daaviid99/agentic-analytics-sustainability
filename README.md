@@ -2,7 +2,7 @@
 
 > ⚠️ **DEMO PROJECT — NOT FOR PRODUCTION USE**
 >
-> This repository is an exploratory prototype built to evaluate the feasibility of applying agentic AI to ESG data analysis and sustainability reporting workflows. It is not production-ready, has not been security-audited, and should not be deployed in any live environment or used with sensitive corporate data without significant further development.
+> This repository is an exploratory prototype built to evaluate the feasibility of applying agentic AI to ESG data analysis and sustainability reporting workflows, synthetic-data based. It is not production-ready, has not been security-audited, and should not be deployed in any live environment or used with sensitive corporate data without significant further development.
 
 ## Example of use
 ### Chatbot
